@@ -1,0 +1,126 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootswatch/dist/morph/variables";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/buttons";
+
+// Variables
+$activetab: #99381f;
+$active-glow: #fffdfb; // Define your custom glow color
+
+// Animations
+@keyframes navMoveUp {
+	0% {
+		transform: translateY(40px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+@keyframes navbarMoveUp {
+	0% {
+		transform: translateY(40vh);
+		opacity: 1;
+		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.137);
+	}
+	50% {
+		transform: translateY(40vh);
+		opacity: 1;
+		box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.062);
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.233);
+	}
+}
+@keyframes bodyMoveUp {
+	0% {
+		transform: translateY(40vh);
+		opacity: 1;
+		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.137);
+	}
+	50% {
+		transform: translateY(40vh);
+		opacity: 1;
+		box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.062);
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.233);
+	}
+}
+
+// ----------------------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------------------------
+.w-fit-content {
+	width: fit-content;
+}
+
+.icon-btn {
+	border-radius: 50%;
+	transition: 0.4s ease;
+	&:hover {
+		filter: brightness(1.1);
+	}
+	&:active,
+	&.active {
+		filter: brightness(1.2);
+	}
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background: $dark;
+	color: $light;
+	transition: 0.4s ease;
+	animation: navMoveUp 0.6s ease forwards;
+	opacity: 0;
+	z-index: 2;
+}
+
+.store-container {
+	height: 70vh;
+}
+
+// Navbar -------------------------------------
+.navbar {
+	overflow: hidden;
+	animation: navbarMoveUp 2s ease forwards;
+}
+nav .icon-btn.btn.active,
+nav .icon-btn.btn:active {
+	background: $light;
+	transition: 0.4s ease;
+}
+
+// Delay Nav Items
+.navbar .icon-btn:nth-child(1) {
+	animation-delay: 0.1s;
+}
+.navbar .icon-btn:nth-child(2) {
+	animation-delay: 0.3s;
+}
+.navbar .icon-btn:nth-child(3) {
+	animation-delay: 0.5s;
+}
+.navbar .icon-btn:nth-child(4) {
+	animation-delay: 0.7s;
+}
+//-------------------------------------
+// Bootstrap Override
+.icon-btn.btn-primary:hover {
+	background: lighten($dark, 1%);
+	color: #fff;
+	transition: 0.4s ease;
+}
+.icon-btn.active-custom {
+	position: relative;
+	isolation: isolate;
+	z-index: 0;
+	color: #95ff87;
+}
