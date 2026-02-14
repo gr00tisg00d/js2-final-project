@@ -24,34 +24,45 @@ $active-glow: #fffdfb; // Define your custom glow color
 	0% {
 		transform: translateY(40vh);
 		opacity: 1;
-		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.137);
+		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0);
 	}
 	50% {
 		transform: translateY(40vh);
 		opacity: 1;
-		box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.062);
+		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0);
 	}
 	100% {
 		transform: translateY(0);
 		opacity: 1;
-		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.233);
+		box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0);
 	}
 }
 @keyframes bodyMoveUp {
 	0% {
 		transform: translateY(40vh);
-		opacity: 1;
-		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.137);
+		opacity: 0;
+		height: 0vh;
 	}
-	50% {
+	20% {
 		transform: translateY(40vh);
-		opacity: 1;
-		box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.062);
+		opacity: 0;
+		height: 0vh;
 	}
+
 	100% {
 		transform: translateY(0);
 		opacity: 1;
-		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.233);
+		height: 70vh;
+	}
+}
+@keyframes bgBrightness {
+	from {
+		filter: brightness(0.9);
+		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.123);
+	}
+	to {
+		filter: brightness(1);
+		box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0);
 	}
 }
 
@@ -62,8 +73,29 @@ $active-glow: #fffdfb; // Define your custom glow color
 	width: fit-content;
 }
 
+main {
+	min-height: 70vh;
+}
+body {
+	background: linear-gradient(#15181b, #181818);
+	filter: brightness(1);
+	animation: bgBrightness 1s ease forwards;
+}
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: inherit;
+	filter: brightness(1);
+	animation: bgBrightness 2s ease forwards;
+	pointer-events: none;
+}
+footer {
+	background: transparent;
+}
+
 .icon-btn {
-	border-radius: 50%;
 	transition: 0.4s ease;
 	&:hover {
 		filter: brightness(1.1);
@@ -72,9 +104,6 @@ $active-glow: #fffdfb; // Define your custom glow color
 	&.active {
 		filter: brightness(1.2);
 	}
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
 	background: $dark;
 	color: $light;
 	transition: 0.4s ease;
@@ -84,7 +113,11 @@ $active-glow: #fffdfb; // Define your custom glow color
 }
 
 .store-container {
-	height: 70vh;
+	height: 0vh;
+	animation: bodyMoveUp 1s ease forwards;
+	animation-delay: 1s;
+	transform: translateY(40vh);
+	opacity: 0;
 }
 
 // Navbar -------------------------------------
@@ -124,3 +157,11 @@ nav .icon-btn.btn:active {
 	z-index: 0;
 	color: #95ff87;
 }
+
+
+// ------------Debugging-----------
+// .row > [class^="col"],
+// .d-flex > .col,
+// .debugging {
+// 	border: 1px solid red; // for visual debugging
+// }

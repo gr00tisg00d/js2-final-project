@@ -1,0 +1,60 @@
+export default [
+	{
+		title: "Bubble Devourer",
+		img: "/src/Images/icons/bubble-devourer.png",
+		cost: 50,
+	},
+	{
+		title: "Cloud Gremlin",
+		img: "/src/Images/icons/cloud-gremlin.png",
+		cost: 50,
+	},
+	{
+		title: "Core Awakening",
+		img: "/src/Images/icons/core-awakening.png",
+		cost: 75,
+	},
+	{
+		title: "Cosmo Puffle",
+		img: "/src/Images/icons/cosmo-puffle.png",
+		cost: 60,
+	},
+	{
+		title: "Crowned Trickster",
+		img: "/src/Images/icons/crowned-trickster.png",
+		cost: 80,
+	},
+	{ title: "Dream Drift", img: "/src/Images/icons/dream-drift.png", cost: 40 },
+	{ title: "Dual Koi", img: "/src/Images/icons/dual-koi.png", cost: 55 },
+	{ title: "Flame Fiend", img: "/src/Images/icons/flame-fiend.png", cost: 70 },
+	{
+		title: "Forest Sneak",
+		img: "/src/Images/icons/forest-sneak.png",
+		cost: 45,
+	},
+	{ title: "Hexa Core", img: "/src/Images/icons/hexa-core.png", cost: 65 },
+	{
+		title: "Hooded Scavenger",
+		img: "/src/Images/icons/hooded-scavenger.png",
+		cost: 50,
+	},
+	{ title: "Lunar Moth", img: "/src/Images/icons/lunar-moth.png", cost: 60 },
+	{ title: "Moon Puff", img: "/src/Images/icons/moon-puff.png", cost: 50 },
+	{
+		title: "Nebula Bandit",
+		img: "/src/Images/icons/nebula-bandit.png",
+		cost: 75,
+	},
+	{ title: "Neon Alpha", img: "/src/Images/icons/neon-alpha.png", cost: 55 },
+	{
+		title: "Neon Marauder",
+		img: "/src/Images/icons/neon-marauder.png",
+		cost: 65,
+	},
+	{ title: "Oracle Glow", img: "/src/Images/icons/oracle-glow.png", cost: 80 },
+	{ title: "Retro Void", img: "/src/Images/icons/retro-void.png", cost: 70 },
+	{ title: "Spike Puff", img: "/src/Images/icons/spike-puff.png", cost: 40 },
+	{ title: "Star Warden", img: "/src/Images/icons/star-warden.png", cost: 90 },
+	{ title: "Swag Duck", img: "/src/Images/icons/swag-duck.png", cost: 30 },
+	{ title: "Time Shard", img: "/src/Images/icons/time-shard.png", cost: 100 },
+];
