@@ -44,62 +44,192 @@
 
     <main class="container p-0">
         <!-- Main Content -->
-        <div class="d-flex d-md-none justify-content-end gap-2 mt-3">
-            <button class=" icon-btn" type="button" data-bs-toggle="modal" data-bs-target="#filterModal"
+
+        <!-- Filter/Checkout Modals -->
+        <div class="d-flex d-md-none justify-content-end gap-2 mt-2 filter-cart-modals">
+            <button class="icon-btn" type="button" data-bs-toggle="modal" data-bs-target="#filterModal"
                 aria-label="Open filters">
                 <i class="bi bi-funnel"></i>
             </button>
-            <button class=" icon-btn" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
+            <button class="icon-btn" type="button" data-bs-toggle="modal" data-bs-target="#cartModal"
                 aria-label="Open cart">
                 <i class="bi bi-cart"></i>
             </button>
         </div>
-        <div class="d-flex gap-2 store-container mt-3 flex-column flex-md-row">
-            <div class="col-md-3 bg-dark rounded p-3 d-none d-md-block">Filter</div>
-            <!-- Store Body **REPLACE WITH A POPULATE FUNCTION PLEASE** -->
-            <div class="col-12 col-md bg-dark rounded px-1 py-1 align-items-start store-main">
-                <div class="px-1 pt-2 store-inner row g-2">
 
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/bubble-devourer.png" class="card-img rounded" alt="...">
-                        <p>Bubble Devourer</p>
+        <!-- Filter -->
+        <div class="d-flex store-container p-4 flex-column flex-md-row">
+            <div class="col-md-3 bg-dark d-none d-md-block">
+                <div class="filter-inner">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="fw-semibold">Filters</span>
+                        <button class="btn btn-sm btn-outline-primary filter-clear" type="button">Clear</button>
                     </div>
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/core-awakening.png" class="card-img rounded" alt="...">
-                        <p>Core Awakening</p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/cosmo-puffle.png" class="card-img rounded" alt="...">
-                        <p>Cosmo Puffle</p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/nebula-bandit.png" class="card-img rounded" alt="...">
-                        <p>Nebula Bandit</p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/swag-duck.png" class="card-img rounded" alt="...">
-                        <p>Swag Duck</p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card col-6 col-md-4 col-lg-2">
-                        <img src="/Images/icons/swag-duck.png" class="card-img rounded" alt="...">
-                        <p>Swag Duck</p>
+                    <div id="filterPanel" class="d-flex flex-column gap-2">
+                        <label class="small text-secondary">Search</label>
+                        <input class="form-control form-control-sm" type="text" placeholder="Search items...">
+                        <div class="d-flex flex-column gap-1 mt-2">
+                            <span class="small text-secondary">Price range</span>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$0-$50</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$51-$70</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$71-$90</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$91-$100</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
 
-            <div class="col-md-3 bg-dark rounded p-3 d-none d-md-block">Cart</div>
+            <!-- Store Body **REPLACE WITH A POPULATE FUNCTION PLEASE** -->
+            <div class="col-12 col-md bg-dark  px-1 py-1 align-items-start store-main">
+                <div class="px-2 py-2 store-inner">
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/bubble-devourer.png" class="card-img rounded" alt="Bubble Devourer">
+                        <p>Bubble Devourer</p>
+                        <p class="text-secondary"><small>$50</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/cloud-gremlin.png" class="card-img rounded" alt="Cloud Gremlin">
+                        <p>Cloud Gremlin</p>
+                        <p class="text-secondary"><small>$50</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/core-awakening.png" class="card-img rounded" alt="Core Awakening">
+                        <p>Core Awakening</p>
+                        <p class="text-secondary"><small>$75</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/cosmo-puffle.png" class="card-img rounded" alt="Cosmo Puffle">
+                        <p>Cosmo Puffle</p>
+                        <p class="text-secondary"><small>$60</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/crowned-trickster.png" class="card-img rounded" alt="Crowned Trickster">
+                        <p>Crowned Trickster</p>
+                        <p class="text-secondary"><small>$80</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/dream-drift.png" class="card-img rounded" alt="Dream Drift">
+                        <p>Dream Drift</p>
+                        <p class="text-secondary"><small>$40</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/dual-koi.png" class="card-img rounded" alt="Dual Koi">
+                        <p>Dual Koi</p>
+                        <p class="text-secondary"><small>$55</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/flame-fiend.png" class="card-img rounded" alt="Flame Fiend">
+                        <p>Flame Fiend</p>
+                        <p class="text-secondary"><small>$70</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/forest-sneak.png" class="card-img rounded" alt="Forest Sneak">
+                        <p>Forest Sneak</p>
+                        <p class="text-secondary"><small>$45</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/hexa-core.png" class="card-img rounded" alt="Hexa Core">
+                        <p>Hexa Core</p>
+                        <p class="text-secondary"><small>$65</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/hooded-scavenger.png" class="card-img rounded" alt="Hooded Scavenger">
+                        <p>Hooded Scavenger</p>
+                        <p class="text-secondary"><small>$50</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/lunar-moth.png" class="card-img rounded" alt="Lunar Moth">
+                        <p>Lunar Moth</p>
+                        <p class="text-secondary"><small>$60</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/moon-puff.png" class="card-img rounded" alt="Moon Puff">
+                        <p>Moon Puff</p>
+                        <p class="text-secondary"><small>$50</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/nebula-bandit.png" class="card-img rounded" alt="Nebula Bandit">
+                        <p>Nebula Bandit</p>
+                        <p class="text-secondary"><small>$75</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/neon-alpha.png" class="card-img rounded" alt="Neon Alpha">
+                        <p>Neon Alpha</p>
+                        <p class="text-secondary"><small>$55</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/neon-marauder.png" class="card-img rounded" alt="Neon Marauder">
+                        <p>Neon Marauder</p>
+                        <p class="text-secondary"><small>$65</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/oracle-glow.png" class="card-img rounded" alt="Oracle Glow">
+                        <p>Oracle Glow</p>
+                        <p class="text-secondary"><small>$80</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/retro-void.png" class="card-img rounded" alt="Retro Void">
+                        <p>Retro Void</p>
+                        <p class="text-secondary"><small>$70</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/spike-puff.png" class="card-img rounded" alt="Spike Puff">
+                        <p>Spike Puff</p>
+                        <p class="text-secondary"><small>$40</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/star-warden.png" class="card-img rounded" alt="Star Warden">
+                        <p>Star Warden</p>
+                        <p class="text-secondary"><small>$90</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/swag-duck.png" class="card-img rounded" alt="Swag Duck">
+                        <p>Swag Duck</p>
+                        <p class="text-secondary"><small>$30</small></p>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/time-shard.png" class="card-img rounded" alt="Time Shard">
+                        <p>Time Shard</p>
+                        <p class="text-secondary"><small>$100</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart -->
+            <div class="col-md-3 bg-dark d-none d-md-block">
+                <div class="cart-inner">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="fw-semibold">Cart</span>
+                        <button class="btn btn-sm btn-outline-primary" id="clearCartBtn" type="button">Clear</button>
+                    </div>
+                    <div id="cartPanel" class="d-flex flex-column gap-2">
+                        <div class="text-secondary small">No items yet.</div>
+                    </div>
+                    <button class="btn btn-primary w-100 mt-3" type="button">Checkout</button>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="footer py-4 text-light border-top border-secondary">
-        <div class="d-flex flex-column flex-md-row align-items-center gap-4 m-auto px-4">
+        <div class="d-flex flex-column flex-md-row align-items-center m-auto px-4">
             <div class="d-flex align-items-center gap-2 col justify-content-start ">
                 <i class="bi bi-bug-fill fs-4 text-warning"></i>
-                <span class="fw-bold">Find The Err0r</span>
+                <span class="fw-bold text-primary">Find The Err0r</span>
             </div>
-            <div class="d-flex gap-3 col-4 justify-content-center debugging align-content-center">
+            <div class="d-flex col-3 justify-content-center debugging align-content-center">
                 <a href="#" class="text-light text-decoration-none small col align-content-center text-center">Privacy
                     Policy</a>
                 <a href="#" class="text-light text-decoration-none small col-6 align-content-center text-center">Terms
@@ -132,7 +262,33 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Filter content goes here.</p>
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="fw-semibold">Filters</span>
+                        <button class="btn btn-sm btn-outline-primary filter-clear" type="button">Clear</button>
+                    </div>
+                    <div id="filterModalBody" class="d-flex flex-column gap-2">
+                        <label class="small text-secondary">Search</label>
+                        <input class="form-control form-control-sm" type="text" placeholder="Search items...">
+                        <div class="d-flex flex-column gap-1 mt-2">
+                            <span class="small text-secondary">Price range</span>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$0-$50</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$51-$70</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$71-$90</span>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span>$91-$100</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,7 +303,15 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Cart content goes here.</p>
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="fw-semibold">Cart</span>
+                        <button class="btn btn-sm btn-outline-primary" id="clearCartBtnModal"
+                            type="button">Clear</button>
+                    </div>
+                    <div id="cartModalBody" class="d-flex flex-column gap-2">
+                        <div class="text-secondary small">No items yet.</div>
+                    </div>
+                    <button class="btn btn-primary w-100 mt-3" type="button">Checkout</button>
                 </div>
             </div>
         </div>
