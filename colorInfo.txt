@@ -1,0 +1,16 @@
+Floral White
+#fffcf2
+
+~Silver
+#ccc5b9
+
+~Charcoal Brown
+#403d39
+
+~Carbon Black
+#252422
+
+
+~Spicy Paprika
+#eb5e28
+

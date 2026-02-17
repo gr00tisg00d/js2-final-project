@@ -46,7 +46,7 @@
         <!-- Main Content -->
 
         <!-- Filter/Checkout Modals -->
-        <div class="d-flex d-md-none justify-content-end gap-2 mt-2 filter-cart-modals">
+        <div class="d-flex d-lg-none justify-content-end gap-2 mt-2 filter-cart-modals">
             <button class="icon-btn" type="button" data-bs-toggle="modal" data-bs-target="#filterModal"
                 aria-label="Open filters">
                 <i class="bi bi-funnel"></i>
@@ -57,13 +57,27 @@
             </button>
         </div>
 
-        <!-- Filter -->
-        <div class="d-flex store-container p-4 flex-column flex-md-row">
-            <div class="col-md-3 bg-dark d-none d-md-block">
+        <!-- Filter / Cart (Desktop sidebar) -->
+        <div class="d-flex store-container p-4 flex-column flex-lg-row">
+            <aside class="col-lg-2 bg-dark d-none d-lg-block store-sidebar">
                 <div class="filter-inner">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="fw-semibold">Filters</span>
                         <button class="btn btn-sm btn-outline-primary filter-clear" type="button">Clear</button>
+                    </div>
+                    <div class="mb-3">
+                        <ul class="nav flex-column gap-1 filter-menu">
+                            <li class="nav-item">
+                                <button class="nav-link active px-2 w-100" type="button"
+                                    aria-current="true">Icons</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-2 w-100" type="button">IDE Themes</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-2 w-100" type="button">Banners</button>
+                            </li>
+                        </ul>
                     </div>
                     <div id="filterPanel" class="d-flex flex-column gap-2">
                         <label class="small text-secondary">Search</label>
@@ -89,126 +103,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Store Body **REPLACE WITH A POPULATE FUNCTION PLEASE** -->
-            <div class="col-12 col-md bg-dark  px-1 py-1 align-items-start store-main">
-                <div class="px-2 py-2 store-inner">
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/bubble-devourer.png" class="card-img rounded" alt="Bubble Devourer">
-                        <p>Bubble Devourer</p>
-                        <p class="text-secondary"><small>$50</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/cloud-gremlin.png" class="card-img rounded" alt="Cloud Gremlin">
-                        <p>Cloud Gremlin</p>
-                        <p class="text-secondary"><small>$50</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/core-awakening.png" class="card-img rounded" alt="Core Awakening">
-                        <p>Core Awakening</p>
-                        <p class="text-secondary"><small>$75</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/cosmo-puffle.png" class="card-img rounded" alt="Cosmo Puffle">
-                        <p>Cosmo Puffle</p>
-                        <p class="text-secondary"><small>$60</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/crowned-trickster.png" class="card-img rounded" alt="Crowned Trickster">
-                        <p>Crowned Trickster</p>
-                        <p class="text-secondary"><small>$80</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/dream-drift.png" class="card-img rounded" alt="Dream Drift">
-                        <p>Dream Drift</p>
-                        <p class="text-secondary"><small>$40</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/dual-koi.png" class="card-img rounded" alt="Dual Koi">
-                        <p>Dual Koi</p>
-                        <p class="text-secondary"><small>$55</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/flame-fiend.png" class="card-img rounded" alt="Flame Fiend">
-                        <p>Flame Fiend</p>
-                        <p class="text-secondary"><small>$70</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/forest-sneak.png" class="card-img rounded" alt="Forest Sneak">
-                        <p>Forest Sneak</p>
-                        <p class="text-secondary"><small>$45</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/hexa-core.png" class="card-img rounded" alt="Hexa Core">
-                        <p>Hexa Core</p>
-                        <p class="text-secondary"><small>$65</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/hooded-scavenger.png" class="card-img rounded" alt="Hooded Scavenger">
-                        <p>Hooded Scavenger</p>
-                        <p class="text-secondary"><small>$50</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/lunar-moth.png" class="card-img rounded" alt="Lunar Moth">
-                        <p>Lunar Moth</p>
-                        <p class="text-secondary"><small>$60</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/moon-puff.png" class="card-img rounded" alt="Moon Puff">
-                        <p>Moon Puff</p>
-                        <p class="text-secondary"><small>$50</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/nebula-bandit.png" class="card-img rounded" alt="Nebula Bandit">
-                        <p>Nebula Bandit</p>
-                        <p class="text-secondary"><small>$75</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/neon-alpha.png" class="card-img rounded" alt="Neon Alpha">
-                        <p>Neon Alpha</p>
-                        <p class="text-secondary"><small>$55</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/neon-marauder.png" class="card-img rounded" alt="Neon Marauder">
-                        <p>Neon Marauder</p>
-                        <p class="text-secondary"><small>$65</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/oracle-glow.png" class="card-img rounded" alt="Oracle Glow">
-                        <p>Oracle Glow</p>
-                        <p class="text-secondary"><small>$80</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/retro-void.png" class="card-img rounded" alt="Retro Void">
-                        <p>Retro Void</p>
-                        <p class="text-secondary"><small>$70</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/spike-puff.png" class="card-img rounded" alt="Spike Puff">
-                        <p>Spike Puff</p>
-                        <p class="text-secondary"><small>$40</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/star-warden.png" class="card-img rounded" alt="Star Warden">
-                        <p>Star Warden</p>
-                        <p class="text-secondary"><small>$90</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/swag-duck.png" class="card-img rounded" alt="Swag Duck">
-                        <p>Swag Duck</p>
-                        <p class="text-secondary"><small>$30</small></p>
-                    </div>
-                    <div class="text-bg-dar p-1 store-card">
-                        <img src="/Images/icons/time-shard.png" class="card-img rounded" alt="Time Shard">
-                        <p>Time Shard</p>
-                        <p class="text-secondary"><small>$100</small></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cart -->
-            <div class="col-md-3 bg-dark d-none d-md-block">
                 <div class="cart-inner">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="fw-semibold">Cart</span>
@@ -219,25 +113,186 @@
                     </div>
                     <button class="btn btn-primary w-100 mt-3" type="button">Checkout</button>
                 </div>
+            </aside>
+
+            <!-- Store Body **REPLACE WITH A POPULATE FUNCTION PLEASE** -->
+            <div class="col-12 col-lg bg-dark  px-1 py-1 align-items-start store-main">
+                <div class="px-2 py-2 store-inner">
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/bubble-devourer.png" class="card-img rounded" alt="Bubble Devourer">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Bubble Devourer</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 50</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/core-awakening.png" class="card-img rounded" alt="Core Awakening">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Core Awakening</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 75</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/cosmo-puffle.png" class="card-img rounded" alt="Cosmo Puffle">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Cosmo Puffle</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 60</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/crowned-trickster.png" class="card-img rounded" alt="Crowned Trickster">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Crowned Trickster</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 80</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/dual-koi.png" class="card-img rounded" alt="Dual Koi">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Dual Koi</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 55</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/flame-fiend.png" class="card-img rounded" alt="Flame Fiend">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Flame Fiend</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 70</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/hexa-core.png" class="card-img rounded" alt="Hexa Core">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Hexa Core</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 65</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/lunar-moth.png" class="card-img rounded" alt="Lunar Moth">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Lunar Moth</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 60</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/moon-puff.png" class="card-img rounded" alt="Moon Puff">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Moon Puff</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 50</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/nebula-bandit.png" class="card-img rounded" alt="Nebula Bandit">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Nebula Bandit</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 75</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/neon-marauder.png" class="card-img rounded" alt="Neon Marauder">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Marauder</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 65</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/oracle-glow.png" class="card-img rounded" alt="Oracle Glow">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Oracle Glow</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 80</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/retro-void.png" class="card-img rounded" alt="Retro Void">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Retro Void</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 70</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/spike-puff.png" class="card-img rounded" alt="Spike Puff">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Spike Puff</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 40</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/star-warden.png" class="card-img rounded" alt="Star Warden">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Star Warden</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 90</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/swag-duck.png" class="card-img rounded" alt="Swag Duck">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Swag Duck</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 30</span>
+                    </div>
+                    <div class="text-bg-dar p-1 store-card">
+                        <img src="/Images/icons/time-shard.png" class="card-img rounded" alt="Time Shard">
+                        <button class="btn btn-primary btn-sm store-card-action" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addToCartModal" aria-label="Add item to cart">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <p>Time Shard</p>
+                        <span class="store-price"><i class="bi bi-coin"></i> 100</span>
+                    </div>
+                </div>
             </div>
+
         </div>
     </main>
 
-    <footer class="footer py-4 text-light border-top border-secondary">
-        <div class="d-flex flex-column flex-md-row align-items-center m-auto px-4">
-            <div class="d-flex align-items-center gap-2 col justify-content-start ">
-                <i class="bi bi-bug-fill fs-4 text-warning"></i>
-                <span class="fw-bold text-primary">Find The Err0r</span>
+    <!-- Footer -->
+    <footer class="footer text-light border-top border-secondary py-2 py-md-4">
+        <div class="footer-inner d-flex flex-column flex-md-row align-items-center m-auto px-4">
+            <div class="footer-brand d-flex align-items-center gap-2 col justify-content-start">
+                <i class="bi bi-bug-fill fs-4 brand-accent"></i>
+                <span class="fw-bold">Find The Err0r</span>
             </div>
-            <div class="d-flex col-3 justify-content-center debugging align-content-center">
+            <div class="footer-links d-none d-md-flex col-4 justify-content-between debugging align-content-center">
                 <a href="#" class="text-light text-decoration-none small col align-content-center text-center">Privacy
                     Policy</a>
-                <a href="#" class="text-light text-decoration-none small col-6 align-content-center text-center">Terms
+                <a href="#" class="text-light text-decoration-none small col align-content-center text-center">Terms
                     of Service</a>
                 <a href="#"
                     class="text-light text-decoration-none small col align-content-center text-center">Contact</a>
             </div>
-            <div class="d-flex gap-3 col justify-content-end">
+            <div class="footer-social d-none d-md-flex gap-3 col justify-content-end">
                 <a href="#" class="text-light"><i class="bi bi-github fs-5"></i></a>
                 <a href="#" class="text-light"><i class="bi bi-twitter-x fs-5"></i></a>
                 <a href="#" class="text-light"><i class="bi bi-envelope fs-5"></i></a>
@@ -265,6 +320,20 @@
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="fw-semibold">Filters</span>
                         <button class="btn btn-sm btn-outline-primary filter-clear" type="button">Clear</button>
+                    </div>
+                    <div class="mb-3">
+                        <ul class="nav flex-column gap-1 filter-menu">
+                            <li class="nav-item">
+                                <button class="nav-link active px-2 w-100" type="button"
+                                    aria-current="true">Icons</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-2 w-100" type="button">IDE Themes</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-2 w-100" type="button">Banners</button>
+                            </li>
+                        </ul>
                     </div>
                     <div id="filterModalBody" class="d-flex flex-column gap-2">
                         <label class="small text-secondary">Search</label>
@@ -312,6 +381,25 @@
                         <div class="text-secondary small">No items yet.</div>
                     </div>
                     <button class="btn btn-primary w-100 mt-3" type="button">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="addToCartModalLabel">Add to cart?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/Images/References/New Wireframe 2.png" alt="preview">
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Add to cart</button>
                 </div>
             </div>
         </div>
