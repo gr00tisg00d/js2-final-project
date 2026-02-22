@@ -69,6 +69,12 @@ html,
 body {
 	height: 100dvh;
 }
+
+#app {
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+}
 .w-fit-content {
 	width: fit-content;
 }
@@ -85,11 +91,9 @@ main {
 body {
 	background: linear-gradient($custom-background, $custom-surface);
 	filter: brightness(1);
-	display: flex;
-	flex-direction: column;
 }
 body::before {
-	content: "";
+	content: '';
 	position: fixed;
 	inset: 0;
 	z-index: -1;
@@ -155,7 +159,10 @@ footer a:hover {
 	min-height: 0;
 }
 .store-inner {
-	background: linear-gradient($custom-surface, rgba($custom-background, 0.65));
+	background: linear-gradient(
+		$custom-surface,
+		rgba($custom-background, 0.65)
+	);
 	border-radius: 5px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
