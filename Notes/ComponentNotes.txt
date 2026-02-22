@@ -1,0 +1,8 @@
+
+
+What components are on the page?
+
+1.) Navbar/navbuttons
+2.) Items in shop (Specific data loaded through data)
+3.) Modal Buttons? Maybe Not.
+4.) Modal Content <
