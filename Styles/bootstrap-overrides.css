@@ -1,0 +1,53 @@
+
+/* Buttons */
+.btn-primary {
+  background-color: #eb5e28;
+  border-color: #eb5e28;
+  color: #fffcf2;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  background-color: #eb5e28;
+  border-color: #eb5e28;
+}
+
+.btn-outline-primary {
+  color: #fffcf2;
+  border-color: rgba(235, 94, 40, 0.65);
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(235, 94, 40, 0.18);
+  border-color: rgba(235, 94, 40, 0.85);
+  color: #fffcf2;
+}
+
+/* Pills (scoped to app surfaces) */
+.app-surface .nav-pills .nav-link {
+  color: #fffcf2;
+  border: 1px solid rgba(255, 252, 242, 0.15);
+  background: rgba(37, 36, 34, 0.35);
+}
+
+.app-surface .nav-pills .nav-link:hover,
+.app-surface .nav-pills .nav-link:focus-visible {
+  background: rgba(37, 36, 34, 0.55);
+}
+
+.app-surface .nav-pills .nav-link.active {
+  background-color: #eb5e28;
+  border-color: #eb5e28;
+  color: #fffcf2;
+}
+
+/* Utility text colors used in components */
+.text-body-secondary,
+.text-secondary {
+  color: rgba(255, 252, 242, 0.7) !important;
+}
+
+/* Border utility used in footer */
+footer.border-top {
+  border-top-color: rgba(255, 252, 242, 0.15);
+}

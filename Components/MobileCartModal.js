@@ -1,10 +1,10 @@
 export default {
-    name: 'MobileCartModal',
-    template: `
+	name: "MobileCartModal",
+	template: `
 		<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-scrollable">
-				<div class="modal-content bg-dark text-light">
-					<div class="modal-header border-secondary">
+				<div class="modal-content app-surface">
+					<div class="modal-header">
 						<h5 class="modal-title" id="cartModalLabel">Cart</h5>
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
@@ -21,5 +21,5 @@ export default {
 				</div>
 			</div>
 		</div>
-	`
+	`,
 };
