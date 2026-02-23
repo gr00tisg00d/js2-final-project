@@ -1,5 +1,10 @@
+import CartPanel from "./CartPanel.js";
+
 export default {
 	name: "MobileCartModal",
+	components: {
+		CartPanel,
+	},
 	template: `
 		<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-scrollable">

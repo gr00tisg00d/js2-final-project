@@ -9,6 +9,17 @@ body {
   overflow: hidden;
 }
 
+store-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+store-page > main {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 body {
   background: linear-gradient(#252422, #403d39);
   color: #fffcf2;
@@ -23,10 +34,20 @@ main {
   min-height: 0;
 }
 
+.store-container > aside,
+.store-container > section {
+  min-height: 0;
+}
+
+.store-container > section {
+  overflow: hidden;
+}
+
 .store-scroll {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 body::before {

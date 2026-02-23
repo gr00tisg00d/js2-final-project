@@ -16,6 +16,20 @@ body {
 	overflow: hidden;
 }
 
+// Vue components are mounted into custom elements like <store-page>.
+// Make them participate in the #app flex column layout so content sections
+// don't grow the overall page height (they should scroll internally).
+store-page {
+	flex: 1 1 auto;
+	min-height: 0;
+	display: flex;
+}
+
+store-page > main {
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
 body {
 	background: linear-gradient($custom-background, $custom-surface);
 	color: $custom-accent;
@@ -30,10 +44,22 @@ main {
 	min-height: 0;
 }
 
+// Allow the store grid columns to shrink so the inner .store-scroll can scroll.
+.store-container > aside,
+.store-container > section {
+	min-height: 0;
+}
+
+// Prevent the content column itself from expanding; let .store-scroll handle overflow.
+.store-container > section {
+	overflow: hidden;
+}
+
 .store-scroll {
 	flex: 1 1 auto;
 	min-height: 0;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 body::before {
