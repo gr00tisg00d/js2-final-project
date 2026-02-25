@@ -1,3 +1,4 @@
+// Footer
 export default {
 	name: "AppFooter",
 	template: `

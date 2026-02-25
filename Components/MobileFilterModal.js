@@ -13,12 +13,12 @@ export default {
 		};
 	},
 	template: `
-		<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+		<div class="modal fade" id="filterModal" tabindex="-1">
 			<div class="modal-dialog modal-dialog-scrollable">
 				<div class="modal-content app-surface">
 					<div class="modal-header">
 						<h5 class="modal-title" id="filterModalLabel">Filters</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
 					</div>
 					<div class="modal-body">
 						<div class="d-flex align-items-center justify-content-between mb-2">
@@ -42,6 +42,7 @@ export default {
 							</ul>
 						</div>
 						<div id="filterModalBody" class="d-flex flex-column gap-2">
+							<!-- Display filter if page is not home -->
 							<div v-if="storeUi.activeSection !== 'home'">
 								<filter-panel></filter-panel>
 							</div>

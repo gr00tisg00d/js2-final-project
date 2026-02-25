@@ -5,6 +5,7 @@ import StoreHomeSection from "./StoreHomeSection.js";
 import StoreIconsSection from "./StoreIconsSection.js";
 import StoreThemesSection from "./StoreThemesSection.js";
 import StoreBannersSection from "./StoreBannersSection.js";
+import { clearCart } from "../Data/cart.js";
 
 export default {
 	name: "StorePage",
@@ -20,21 +21,24 @@ export default {
 		return {
 			storeUi,
 			setActiveStoreSection,
+			clearCart,
 		};
 	},
 	template: `
         <main class="container flex-grow-1 py-3 d-flex flex-column overflow-hidden">
+
             <!-- Mobile: open filter/cart modals -->
             <div class="position-fixed top-50 end-0 translate-middle-y me-3 d-flex flex-column gap-2 d-lg-none z-3">
-                <button class="btn btn-primary rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#filterModal" aria-label="Open filters">
+                <button class="btn btn-primary rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#filterModal">
                     <i class="bi bi-funnel"></i>
                 </button>
-                <button class="btn btn-primary rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="Open cart">
+                <button class="btn btn-primary rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#cartModal">
                     <i class="bi bi-cart"></i>
                 </button>
             </div>
 
             <div class="row g-3 store-container ">
+
                 <!-- Desktop sidebar -->
                 <aside class="col-lg-3 d-none d-lg-block">
                     <div class="p-3 rounded app-surface mb-3">
@@ -56,19 +60,21 @@ export default {
                             <button class="nav-link" :class="{ active: storeUi.activeSection === 'banners' }" type="button" @click="setActiveStoreSection('banners')">Banners</button>
                         </li>
                         </ul>
+                        <!-- Filters -->
                         <div v-if="storeUi.activeSection !== 'home'">
                             <filter-panel></filter-panel>
                         </div>
                         <div v-else class="small text-body-secondary">No filters on Home.</div>
                     </div>
 
+                    <!-- Cart -->
                     <div class="p-3 rounded app-surface">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <span class="fw-semibold">Cart</span>
-                            <button class="btn btn-sm btn-outline-primary" id="clearCartBtn" type="button">Clear</button>
+                            <button class="btn btn-sm btn-outline-primary" type="button" @click="clearCart">Clear</button>
                         </div>
                         <cart-panel></cart-panel>
-                        <button class="btn btn-primary w-100 mt-3" type="button">Checkout</button>
+                        <button class="btn btn-primary w-100 mt-3" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
                     </div>
                 </aside>
 

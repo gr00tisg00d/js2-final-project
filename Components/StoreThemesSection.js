@@ -6,7 +6,7 @@ export default {
 				<h2 class="h5 mb-0">IDE Themes</h2>
 				<span class="small text-body-secondary">Coming soon</span>
 			</div>
-			<p class="text-body-secondary mb-0 mt-2">Add your theme items here (same grid layout as Icons).</p>
+			<p class="text-body-secondary mb-0 mt-2">none.</p>
 		</div>
 	`,
 };

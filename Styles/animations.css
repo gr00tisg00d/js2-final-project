@@ -1,9 +1,3 @@
-/*
-  Animations only
-  - Keyframes + the rules that APPLY animations (animation / delay / animated opacity)
-  - Keep this separate from theme/layout styling.
-*/
-
 @keyframes navMoveUp {
   0% {
     transform: translateY(40px);
@@ -59,16 +53,10 @@
   }
 }
 
-/* Apply animations */
 body::before {
   animation: bgBrightness 2s ease forwards;
 }
 
-/*
-  IMPORTANT: Don't hide core UI by default.
-  If animations are disabled (user setting, browser policy, extension),
-  elements must still render.
-*/
 .icon-btn {
   opacity: 1;
 }

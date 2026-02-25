@@ -11,6 +11,7 @@ import AppFooter from "./Components/AppFooter.js";
 import MobileFilterModal from "./Components/MobileFilterModal.js";
 import MobileCartModal from "./Components/MobileCartModal.js";
 import MobileAddToCartModal from "./Components/MobileAddToCartModal.js";
+import CheckoutModal from "./Components/CheckoutModal.js";
 
 createApp({
 	components: {
@@ -26,5 +27,6 @@ createApp({
 		MobileFilterModal,
 		MobileCartModal,
 		MobileAddToCartModal,
+		CheckoutModal,
 	},
 }).mount("#app");
