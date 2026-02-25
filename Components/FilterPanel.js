@@ -14,6 +14,7 @@ export default {
 				placeholder="Search items..."
 				v-model="filters.search"
 			/>
+			<!-- v-model binds the value to filters.search which is reactive. -->
 			<div class="d-flex flex-column gap-2 mt-2">
 				<span class="small text-body-secondary">Price filter</span>
 				<div class="d-flex align-items-center justify-content-between small">
