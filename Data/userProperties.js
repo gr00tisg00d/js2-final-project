@@ -1,4 +1,4 @@
-export default [
+export const userBalance = reactive([
     {
         Balance: 100,
         Inventory: [{}],
@@ -6,4 +6,4 @@ export default [
         activeBanner: '',
         activeIDETheme: ''
     }
-]
+]);
