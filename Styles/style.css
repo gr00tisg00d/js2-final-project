@@ -1,3 +1,23 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #403d39 #252422;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #252422;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #403d39;
+  border-radius: 8px;
+  border: 2px solid #252422;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #eb5e28;
+}
+
 html,
 body {
   height: 100dvh;
@@ -11,13 +31,11 @@ body {
 
 store-page {
   flex: 1 1 auto;
-  min-height: 0;
   display: flex;
 }
 
 store-page > main {
   flex: 1 1 auto;
-  min-height: 0;
 }
 
 body {
@@ -25,27 +43,13 @@ body {
   color: #fffcf2;
 }
 
-main {
-  min-height: 0;
-}
-
 .store-container {
   flex: 1 1 auto;
-  min-height: 0;
-}
-
-.store-container > aside,
-.store-container > section {
-  min-height: 0;
-}
-
-.store-container > section {
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .store-scroll {
   flex: 1 1 auto;
-  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
 }

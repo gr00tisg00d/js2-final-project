@@ -1,0 +1,23 @@
+
+Main Functionality:
+
+1.) Switching tabs (Setting Active State)
+
+2.) Filtering Shop Items (Filtering the icons array)
+    a.) In filter panel -> create a slider filter for price and set the state of filter price.
+    b.) Depending on what range is set, filter the array greater than and less than min/max of range.
+
+3.) Adding item to cart -> Popping up preview modal.
+    a.) The real functionality happens in the modal.
+    b.) When the user adds the item to cart, push the item into a new array (cart items).
+    c.) Display a preview of the currently selected icon on an object the displays the user name, icon, lvl.
+    d.) then close the modal.
+
+4.) Checking out items in cart.
+    a.) The cart total price is compared to the users account balance.
+    b.) If the price cost more than the user balance, do not allow user to checkout items. 
+    c.) else, subtract total from user balance and push items from checkout list into user inventory.
+
+5.) Spending currency. (User currency).
+    a.) User balance.
+

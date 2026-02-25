@@ -1,3 +1,22 @@
+// Modern dark scrollbar styles
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #403d39 #252422;
+}
+
+// Webkit scrollbar
+::-webkit-scrollbar {
+	width: 8px;
+	background: #252422;
+}
+::-webkit-scrollbar-thumb {
+	background: #403d39;
+	border-radius: 8px;
+	border: 2px solid #252422;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #eb5e28;
+}
 // Theme colors (Coolors)
 $custom-primary: #eb5e28; // Spicy Paprika
 $custom-primaryhover: #ccc5b9; // Silver
@@ -16,18 +35,13 @@ body {
 	overflow: hidden;
 }
 
-// Vue components are mounted into custom elements like <store-page>.
-// Make them participate in the #app flex column layout so content sections
-// don't grow the overall page height (they should scroll internally).
 store-page {
 	flex: 1 1 auto;
-	min-height: 0;
 	display: flex;
 }
 
 store-page > main {
 	flex: 1 1 auto;
-	min-height: 0;
 }
 
 body {
@@ -36,34 +50,27 @@ body {
 }
 
 main {
-	min-height: 0;
 }
 
 .store-container {
 	flex: 1 1 auto;
-	min-height: 0;
+	overflow-y: auto;
 }
-
-// Allow the store grid columns to shrink so the inner .store-scroll can scroll.
 .store-container > aside,
 .store-container > section {
-	min-height: 0;
 }
 
-// Prevent the content column itself from expanding; let .store-scroll handle overflow.
 .store-container > section {
-	overflow: hidden;
 }
 
 .store-scroll {
 	flex: 1 1 auto;
-	min-height: 0;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
 body::before {
-	content: "";
+	content: '';
 	position: fixed;
 	inset: 0;
 	z-index: -1;
