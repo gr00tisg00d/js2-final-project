@@ -2,7 +2,7 @@ export default {
 	name: "FilterPanel",
 	data() {
 		return {
-			isCollapsed: true,
+			isCollapsed: false,
 		};
 	},
 	props: {

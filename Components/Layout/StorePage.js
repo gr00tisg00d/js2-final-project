@@ -214,8 +214,8 @@ export default {
             <div class="row g-3 store-container ">
 
                 <!-- Desktop sidebar -->
-                <aside class="col-lg-3 d-none d-lg-block">
-					<div class="p-3 rounded app-surface store-sidebar-panel mb-3">
+                <aside class="col-lg-3 d-none d-lg-flex flex-column store-sidebar-column">
+					<div class="p-3 rounded app-surface store-sidebar-panel store-filter-sidebar mb-3">
 						<div class="panel-header mb-3">
 							<span class="panel-eyebrow">Browse</span>
 							<span class="panel-title">Filters</span>
@@ -226,9 +226,9 @@ export default {
 							<button class="sidebar-nav-button" :class="{ active: activeSection === 'themes' }" type="button" @click="setActiveSection('themes')">IDE Themes</button>
 							<button class="sidebar-nav-button" :class="{ active: activeSection === 'banners' }" type="button" @click="setActiveSection('banners')">Banners</button>
 						</div>
-                        <!-- Filters -->
-                        <div v-if="activeSection !== 'home'">
-                            <filter-panel
+						<!-- Filters -->
+						<div v-if="activeSection !== 'home'" class="sidebar-filter-slot">
+							<filter-panel
 								:filters="filters"
 								:price-cap="priceCap"
 								@update-search="updateSearch"
@@ -236,7 +236,7 @@ export default {
 								@update-max-price="updateMaxPrice"
 							></filter-panel>
                         </div>
-                        <div v-else class="small text-body-secondary">No filters on Home.</div>
+                        <div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
                     </div>
 
                     <!-- Cart -->
