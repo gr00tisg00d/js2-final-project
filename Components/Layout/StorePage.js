@@ -36,6 +36,7 @@ export default {
 
 		return {
 			activeSection: "icons",
+			activeSidebarPanel: "filters",
 			filters: {
 				search: "",
 				minPrice: 1,
@@ -88,8 +89,17 @@ export default {
 		canSubmitCheckout() {
 			return this.cartItems.length > 0 && this.hasEnoughBalance;
 		},
+		isFilterSidebarOpen() {
+			return this.activeSidebarPanel === "filters";
+		},
+		isCartSidebarOpen() {
+			return this.activeSidebarPanel === "cart";
+		},
 	},
 	methods: {
+		openSidebarPanel(panel) {
+			this.activeSidebarPanel = panel;
+		},
 		setActiveSection(section) {
 			this.activeSection = section;
 		},
@@ -113,6 +123,7 @@ export default {
 
 			if (existingItem) {
 				existingItem.qty += 1;
+				this.openSidebarPanel("cart");
 				return;
 			}
 
@@ -126,6 +137,8 @@ export default {
 				bestFor: item.bestFor,
 				qty: 1,
 			});
+
+			this.openSidebarPanel("cart");
 		},
 		clearCart() {
 			this.cartItems.splice(0, this.cartItems.length);
@@ -214,51 +227,66 @@ export default {
             <div class="row g-3 store-container ">
 
                 <!-- Desktop sidebar -->
-                <aside class="col-lg-3 d-none d-lg-flex flex-column store-sidebar-column">
-					<div class="p-3 rounded app-surface store-sidebar-panel store-filter-sidebar mb-3">
+				<aside class="col-lg-3 d-none d-lg-flex flex-column store-sidebar-column">
+					<div class="p-3 rounded app-surface store-sidebar-panel store-filter-sidebar" :class="isFilterSidebarOpen ? 'is-expanded' : 'is-collapsed'">
 						<div class="panel-header mb-3">
-							<span class="panel-eyebrow">Browse</span>
-							<span class="panel-title">Filters</span>
+							<button class="sidebar-panel-toggle" type="button" @click="openSidebarPanel('filters')" :aria-expanded="String(isFilterSidebarOpen)">
+								<span>
+									<span class="panel-eyebrow">Browse</span>
+									<span class="panel-title">Filters</span>
+								</span>
+								<i class="bi" :class="isFilterSidebarOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+							</button>
 						</div>
-						<div class="sidebar-nav-grid mb-3">
-							<button class="sidebar-nav-button" :class="{ active: activeSection === 'home' }" type="button" @click="setActiveSection('home')">Home</button>
-							<button class="sidebar-nav-button" :class="{ active: activeSection === 'icons' }" type="button" @click="setActiveSection('icons')">Icons</button>
-							<button class="sidebar-nav-button" :class="{ active: activeSection === 'themes' }" type="button" @click="setActiveSection('themes')">IDE Themes</button>
-							<button class="sidebar-nav-button" :class="{ active: activeSection === 'banners' }" type="button" @click="setActiveSection('banners')">Banners</button>
+						<div class="sidebar-panel-body" :class="{ collapsed: !isFilterSidebarOpen }">
+							<div class="sidebar-panel-body-inner">
+								<div class="sidebar-nav-grid mb-3">
+									<button class="sidebar-nav-button" :class="{ active: activeSection === 'home' }" type="button" @click="setActiveSection('home')">Home</button>
+									<button class="sidebar-nav-button" :class="{ active: activeSection === 'icons' }" type="button" @click="setActiveSection('icons')">Icons</button>
+									<button class="sidebar-nav-button" :class="{ active: activeSection === 'themes' }" type="button" @click="setActiveSection('themes')">IDE Themes</button>
+									<button class="sidebar-nav-button" :class="{ active: activeSection === 'banners' }" type="button" @click="setActiveSection('banners')">Banners</button>
+								</div>
+								<div v-if="activeSection !== 'home'" class="sidebar-filter-slot">
+									<filter-panel
+										:filters="filters"
+										:price-cap="priceCap"
+										@update-search="updateSearch"
+										@update-min-price="updateMinPrice"
+										@update-max-price="updateMaxPrice"
+									></filter-panel>
+                        				</div>
+                        				<div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
+							</div>
 						</div>
-						<!-- Filters -->
-						<div v-if="activeSection !== 'home'" class="sidebar-filter-slot">
-							<filter-panel
-								:filters="filters"
-								:price-cap="priceCap"
-								@update-search="updateSearch"
-								@update-min-price="updateMinPrice"
-								@update-max-price="updateMaxPrice"
-							></filter-panel>
-                        </div>
-                        <div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
                     </div>
 
                     <!-- Cart -->
-					<div class="p-3 rounded app-surface store-sidebar-panel cart-sidebar-panel">
+					<div class="p-3 rounded app-surface store-sidebar-panel cart-sidebar-panel" :class="isCartSidebarOpen ? 'is-expanded' : 'is-collapsed'">
 						<div class="panel-header panel-header-split mb-3">
-							<div>
-								<span class="panel-eyebrow">Basket</span>
-								<span class="panel-title">Cart</span>
-							</div>
-							<button class="btn btn-sm btn-outline-primary" type="button" @click="clearCart">Clear</button>
+							<button class="sidebar-panel-toggle" type="button" @click="openSidebarPanel('cart')" :aria-expanded="String(isCartSidebarOpen)">
+								<span>
+									<span class="panel-eyebrow">Basket</span>
+									<span class="panel-title">Cart</span>
+								</span>
+								<i class="bi" :class="isCartSidebarOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+							</button>
+							<button v-if="isCartSidebarOpen" class="btn btn-sm btn-outline-primary" type="button" @click="clearCart">Clear</button>
                         </div>
-                        <cart-panel
-							:items="cartItems"
-							@remove-item="removeFromCart"
-							@increment-item="incrementQty"
-							@decrement-item="decrementQty"
-						></cart-panel>
-						<div class="cart-total-row mt-3 small">
-							<span class="text-body-secondary">Order total</span>
-							<span class="fw-semibold"><i class="bi bi-coin align-middle"></i> {{ checkoutTotal }}</span>
+						<div class="sidebar-panel-body" :class="{ collapsed: !isCartSidebarOpen }">
+							<div class="sidebar-panel-body-inner">
+								<cart-panel
+									:items="cartItems"
+									@remove-item="removeFromCart"
+									@increment-item="incrementQty"
+									@decrement-item="decrementQty"
+								></cart-panel>
+								<div class="cart-total-row mt-3 small">
+									<span class="text-body-secondary">Order total</span>
+									<span class="fw-semibold"><i class="bi bi-coin align-middle"></i> {{ checkoutTotal }}</span>
+								</div>
+								<button class="btn btn-primary w-100 mt-3" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" :disabled="cartItems.length === 0">Checkout</button>
+							</div>
 						</div>
-						<button class="btn btn-primary w-100 mt-3" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" :disabled="cartItems.length === 0">Checkout</button>
                     </div>
                 </aside>
 

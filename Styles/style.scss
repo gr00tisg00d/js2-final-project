@@ -74,6 +74,10 @@ body {
 }
 
 .store-sidebar-column {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	min-height: 0;
 	max-height: 100%;
 }
 
@@ -254,6 +258,9 @@ footer a:hover {
 
 .store-sidebar-panel {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
 	overflow: hidden;
 	background:
 		radial-gradient(
@@ -272,11 +279,55 @@ footer a:hover {
 }
 
 .store-filter-sidebar {
+	min-height: 0;
+}
+
+.store-sidebar-panel.is-expanded {
+	flex: 1 1 auto;
+}
+
+.store-sidebar-panel.is-collapsed {
+	flex: 0 0 auto;
+}
+
+.sidebar-panel-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	text-align: left;
+}
+
+.sidebar-panel-toggle i {
+	font-size: 1rem;
+	color: rgba($custom-primaryhover, 0.8);
+}
+
+.sidebar-panel-body {
+	display: grid;
+	grid-template-rows: 1fr;
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+	transition: grid-template-rows 0.28s ease;
+}
+
+.sidebar-panel-body.collapsed {
+	grid-template-rows: 0fr;
+	flex: 0 0 auto;
+}
+
+.sidebar-panel-body-inner {
 	display: flex;
 	flex: 1 1 auto;
 	flex-direction: column;
 	min-height: 0;
-	max-height: 100%;
+	overflow: hidden;
 }
 
 .sidebar-filter-slot {
@@ -526,7 +577,24 @@ footer a:hover {
 }
 
 .cart-panel {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	min-height: 0;
 	padding-top: 0.15rem;
+}
+
+.cart-list {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+	padding-right: 0.1rem;
+}
+
+.cart-sidebar-panel {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
 }
 
 .cart-empty-state {
