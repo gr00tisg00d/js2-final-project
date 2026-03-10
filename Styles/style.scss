@@ -12,36 +12,74 @@ body {
 }
 
 #app {
+	display: grid;
+	grid-template-rows: auto minmax(0, 1fr) auto;
 	height: 100dvh;
 	overflow: hidden;
 }
 
-store-page {
-	flex: 1 1 auto;
-	display: flex;
+#app > nav,
+#app > footer {
+	flex: 0 0 auto;
 }
 
-store-page > main {
+.store-page-main {
 	flex: 1 1 auto;
+	display: flex;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.store-page-main > .store-container {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
 }
 
 body {
-	background: linear-gradient($custom-background, $custom-surface);
+	background: rgb(15, 15, 15);
 	color: $custom-accent;
 }
 
 .store-container {
 	flex: 1 1 auto;
-	overflow: auto;
+	min-height: 0;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.store-content-panel {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.store-container > section.app-surface {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 .store-container > aside {
 	margin-top: 0;
 }
 
+.store-container > aside,
+.store-container > section {
+	min-height: 0;
+	max-height: 100%;
+}
+
+.store-sidebar-column {
+	max-height: 100%;
+}
+
 .store-scroll {
 	flex: 1 1 auto;
-	overflow-y: auto;
-	overflow-x: hidden;
+	min-height: 0;
 }
 
 body::before {
@@ -233,6 +271,24 @@ footer a:hover {
 	box-shadow: 0 18px 36px rgba($custom-background, 0.26);
 }
 
+.store-filter-sidebar {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	min-height: 0;
+	max-height: 100%;
+}
+
+.sidebar-filter-slot {
+	display: flex;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.sidebar-empty-state {
+	padding: 0.25rem 0 0.5rem;
+}
+
 .store-sidebar-panel::before {
 	content: "";
 	position: absolute;
@@ -324,7 +380,59 @@ footer a:hover {
 }
 
 .filter-panel {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: column;
+	min-height: 0;
 	padding-top: 0.15rem;
+}
+
+.filter-toggle-button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	width: 100%;
+	padding: 0.7rem 0.9rem;
+	border: 1px solid rgba($custom-accent, 0.08);
+	border-radius: 0.9rem;
+	background: rgba($custom-background, 0.2);
+	color: $custom-accent;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	transition:
+		background-color 0.25s ease,
+		border-color 0.25s ease,
+		transform 0.25s ease;
+}
+
+.filter-toggle-button:hover {
+	background: rgba($custom-primary, 0.12);
+	border-color: rgba($custom-primary, 0.34);
+	transform: translateY(-1px);
+}
+
+.filter-toggle-button i {
+	font-size: 0.95rem;
+}
+
+.filter-panel-body {
+	display: grid;
+	grid-template-rows: 1fr;
+	min-height: 0;
+	overflow: hidden;
+	transition: grid-template-rows 0.28s ease;
+}
+
+.filter-panel-body.collapsed {
+	grid-template-rows: 0fr;
+}
+
+.filter-panel-body-inner {
+	min-height: 0;
+	overflow-y: auto;
+	padding-right: 0.1rem;
 }
 
 .filter-group {

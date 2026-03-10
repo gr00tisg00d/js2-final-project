@@ -198,7 +198,7 @@ export default {
 		},
 	},
 	template: `
-        <main class="container flex-grow-1 py-3 d-flex flex-column overflow-hidden">
+		<main class="container flex-grow-1 py-3 d-flex flex-column overflow-hidden store-page-main">
 
             <!-- Mobile: open filter/cart modals -->
             <div class="position-fixed top-50 end-0 translate-middle-y me-3 d-flex flex-column gap-2 d-lg-none z-3">
@@ -263,7 +263,7 @@ export default {
                 </aside>
 
                 <!-- Store grid -->
-                <section class="col-12 col-lg-9 d-flex flex-column app-surface py-2">
+				<section class="col-12 col-lg-9 d-flex flex-column app-surface py-2 store-content-panel">
 					<div class="store-scroll">
 						<store-home-section
 							v-if="activeSection === 'home'"
