@@ -1,25 +1,31 @@
 import FilterPanel from "../Features/Filters/FilterPanel.js";
-import CartPanel from "../Features/Cart/CartPanel.js";
+import CartSummarySection from "../Features/Cart/CartSummarySection.js";
 import StoreHomeSection from "../Features/Store/StoreHomeSection.js";
 import StoreIconsSection from "../Features/Store/StoreIconsSection.js";
 import StoreThemesSection from "../Features/Store/StoreThemesSection.js";
 import StoreBannersSection from "../Features/Store/StoreBannersSection.js";
+import StoreSectionNav from "../Features/Store/StoreSectionNav.js";
 import MobileFilterModal from "../Features/Filters/MobileFilterModal.js";
 import MobileCartModal from "../Features/Cart/MobileCartModal.js";
 import CheckoutModal from "../Features/Checkout/CheckoutModal.js";
+import SidebarPanelShell from "./SidebarPanelShell.js";
+
+const getPriceCap = (items) => Math.max(...items.map((item) => item.cost));
 
 export default {
 	name: "StorePage",
 	components: {
 		FilterPanel,
-		CartPanel,
+		CartSummarySection,
 		StoreHomeSection,
 		StoreIconsSection,
 		StoreThemesSection,
 		StoreBannersSection,
+		StoreSectionNav,
 		MobileFilterModal,
 		MobileCartModal,
 		CheckoutModal,
+		SidebarPanelShell,
 	},
 	props: {
 		items: {
@@ -32,7 +38,7 @@ export default {
 		},
 	},
 	data() {
-		const initialPriceCap = Math.max(...this.items.map((item) => item.cost));
+		const initialPriceCap = getPriceCap(this.items);
 
 		return {
 			activeSection: "icons",
@@ -48,7 +54,7 @@ export default {
 	},
 	computed: {
 		priceCap() {
-			return Math.max(...this.items.map((item) => item.cost));
+			return getPriceCap(this.items);
 		},
 		filteredIcons() {
 			const search = this.filters.search.trim().toLowerCase();
@@ -71,14 +77,11 @@ export default {
 		cartCount() {
 			return this.cartItems.reduce((count, item) => count + item.qty, 0);
 		},
-		cartSubtotal() {
+		checkoutTotal() {
 			return this.cartItems.reduce(
 				(total, item) => total + item.cost * item.qty,
 				0,
 			);
-		},
-		checkoutTotal() {
-			return this.cartSubtotal;
 		},
 		hasEnoughBalance() {
 			return this.userProfile.balance >= this.checkoutTotal;
@@ -94,6 +97,9 @@ export default {
 		},
 		isCartSidebarOpen() {
 			return this.activeSidebarPanel === "cart";
+		},
+		showFilters() {
+			return this.activeSection !== "home";
 		},
 	},
 	methods: {
@@ -228,71 +234,59 @@ export default {
 
                 <!-- Desktop sidebar -->
 				<aside class="col-lg-3 d-none d-lg-flex flex-column store-sidebar-column">
-					<div class="p-3 rounded app-surface store-sidebar-panel store-filter-sidebar" :class="isFilterSidebarOpen ? 'is-expanded' : 'is-collapsed'">
-						<div class="panel-header mb-3">
-							<button class="sidebar-panel-toggle" type="button" @click="openSidebarPanel('filters')" :aria-expanded="String(isFilterSidebarOpen)">
-								<span>
-									<span class="panel-eyebrow">Browse</span>
-									<span class="panel-title">Filters</span>
-								</span>
-								<i class="bi" :class="isFilterSidebarOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
-							</button>
-						</div>
-						<div class="sidebar-panel-body" :class="{ collapsed: !isFilterSidebarOpen }">
-							<div class="sidebar-panel-body-inner">
-								<div class="sidebar-nav-grid mb-3">
-									<button class="sidebar-nav-button" :class="{ active: activeSection === 'home' }" type="button" @click="setActiveSection('home')">Home</button>
-									<button class="sidebar-nav-button" :class="{ active: activeSection === 'icons' }" type="button" @click="setActiveSection('icons')">Icons</button>
-									<button class="sidebar-nav-button" :class="{ active: activeSection === 'themes' }" type="button" @click="setActiveSection('themes')">IDE Themes</button>
-									<button class="sidebar-nav-button" :class="{ active: activeSection === 'banners' }" type="button" @click="setActiveSection('banners')">Banners</button>
-								</div>
-								<div v-if="activeSection !== 'home'" class="sidebar-filter-slot">
-									<filter-panel
-										:filters="filters"
-										:price-cap="priceCap"
-										@update-search="updateSearch"
-										@update-min-price="updateMinPrice"
-										@update-max-price="updateMaxPrice"
-									></filter-panel>
-                        				</div>
-                        				<div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
-							</div>
-						</div>
-                    </div>
 
-                    <!-- Cart -->
-					<div class="p-3 rounded app-surface store-sidebar-panel cart-sidebar-panel" :class="isCartSidebarOpen ? 'is-expanded' : 'is-collapsed'">
-						<div class="panel-header panel-header-split mb-3">
-							<button class="sidebar-panel-toggle" type="button" @click="openSidebarPanel('cart')" :aria-expanded="String(isCartSidebarOpen)">
-								<span>
-									<span class="panel-eyebrow">Basket</span>
-									<span class="panel-title">Cart</span>
-								</span>
-								<i class="bi" :class="isCartSidebarOpen ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
-							</button>
-							<button v-if="isCartSidebarOpen" class="btn btn-sm btn-outline-primary" type="button" @click="clearCart">Clear</button>
-                        </div>
-						<div class="sidebar-panel-body" :class="{ collapsed: !isCartSidebarOpen }">
-							<div class="sidebar-panel-body-inner">
-								<cart-panel
-									:items="cartItems"
-									@remove-item="removeFromCart"
-									@increment-item="incrementQty"
-									@decrement-item="decrementQty"
-								></cart-panel>
-								<div class="cart-total-row mt-3 small">
-									<span class="text-body-secondary">Order total</span>
-									<span class="fw-semibold"><i class="bi bi-coin align-middle"></i> {{ checkoutTotal }}</span>
-								</div>
-								<button class="btn btn-primary w-100 mt-3" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" :disabled="cartItems.length === 0">Checkout</button>
-							</div>
+					<!-- Filter Panel -->
+					<sidebar-panel-shell
+						class="store-filter-sidebar"
+						eyebrow="Browse"
+						title="Filters"
+						:is-open="isFilterSidebarOpen"
+						@toggle="openSidebarPanel('filters')"
+					>
+						<store-section-nav
+							class="mb-3"
+							:active-section="activeSection"
+							@select-section="setActiveSection"
+						></store-section-nav>
+						<div v-if="showFilters" class="sidebar-filter-slot">
+							<filter-panel
+								:filters="filters"
+								:price-cap="priceCap"
+								@update-search="updateSearch"
+								@update-min-price="updateMinPrice"
+								@update-max-price="updateMaxPrice"
+							></filter-panel>
 						</div>
-                    </div>
+						<div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
+					</sidebar-panel-shell>
+
+                    <!-- Cart Panel -->
+					<sidebar-panel-shell
+						class="cart-sidebar-panel"
+						eyebrow="Basket"
+						title="Cart"
+						:is-open="isCartSidebarOpen"
+						@toggle="openSidebarPanel('cart')"
+					>
+						<!-- Actions Slot -->
+						<template #actions>
+							<button class="btn btn-sm btn-outline-primary" type="button" @click="clearCart">Clear</button>
+						</template>
+						<cart-summary-section
+							:cart-items="cartItems"
+							:checkout-total="checkoutTotal"
+							@remove-item="removeFromCart"
+							@increment-item="incrementQty"
+							@decrement-item="decrementQty"
+						></cart-summary-section>
+					</sidebar-panel-shell>
                 </aside>
 
                 <!-- Store grid -->
 				<section class="col-12 col-lg-9 d-flex flex-column app-surface py-2 store-content-panel">
 					<div class="store-scroll">
+
+						<!-- Home -->
 						<store-home-section
 							v-if="activeSection === 'home'"
 							:featured-item="featuredItem"
@@ -303,11 +297,15 @@ export default {
 							@navigate-section="setActiveSection"
 							@add-item="addItemToCart"
 						></store-home-section>
+
+						<!-- Icon Section -->
 						<store-icons-section
 							v-else-if="activeSection === 'icons'"
 							:items="filteredIcons"
 							@add-item="addItemToCart"
 						></store-icons-section>
+
+						<!-- Others -->
                         <store-themes-section v-else-if="activeSection === 'themes'"></store-themes-section>
                         <store-banners-section v-else-if="activeSection === 'banners'"></store-banners-section>
 					</div>
@@ -316,6 +314,7 @@ export default {
 
 			<mobile-filter-modal
 				:active-section="activeSection"
+				:show-filters="showFilters"
 				:filters="filters"
 				:price-cap="priceCap"
 				@select-section="setActiveSection"

@@ -1,48 +1,48 @@
 .btn-primary {
-  background-color: #eb5e28;
-  border-color: #eb5e28;
-  color: #fffcf2;
+  background-color: #339989;
+  border-color: #339989;
+  color: #fffafb;
 }
 
 .btn-primary:hover {
   filter: brightness(1.05);
-  background-color: #eb5e28;
-  border-color: #eb5e28;
+  background-color: #339989;
+  border-color: #339989;
 }
 
 .btn-outline-primary {
-  color: #fffcf2;
-  border-color: rgba(235, 94, 40, 0.65);
+  color: #fffafb;
+  border-color: rgba(51, 153, 137, 0.65);
 }
 
 .btn-outline-primary:hover {
-  background-color: rgba(235, 94, 40, 0.18);
-  border-color: rgba(235, 94, 40, 0.85);
-  color: #fffcf2;
+  background-color: rgba(51, 153, 137, 0.18);
+  border-color: rgba(51, 153, 137, 0.85);
+  color: #fffafb;
 }
 
 .app-surface .nav-pills .nav-link {
-  color: #fffcf2;
-  border: 1px solid rgba(255, 252, 242, 0.15);
-  background: rgba(37, 36, 34, 0.35);
+  color: #fffafb;
+  border: 1px solid rgba(255, 250, 251, 0.15);
+  background: rgba(19, 21, 21, 0.35);
 }
 
 .app-surface .nav-pills .nav-link:hover,
 .app-surface .nav-pills .nav-link:focus-visible {
-  background: rgba(37, 36, 34, 0.55);
+  background: rgba(19, 21, 21, 0.55);
 }
 
 .app-surface .nav-pills .nav-link.active {
-  background-color: #eb5e28;
-  border-color: #eb5e28;
-  color: #fffcf2;
+  background-color: #339989;
+  border-color: #339989;
+  color: #fffafb;
 }
 
 .text-body-secondary,
 .text-secondary {
-  color: rgba(255, 252, 242, 0.7) !important;
+  color: rgba(255, 250, 251, 0.7) !important;
 }
 
 footer.border-top {
-  border-top-color: rgba(255, 252, 242, 0.15);
+  border-top-color: rgba(255, 250, 251, 0.15);
 }

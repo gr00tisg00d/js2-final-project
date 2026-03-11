@@ -1,9 +1,18 @@
 // Theme colors (Coolors)
-$custom-primary: #eb5e28; // Spicy Paprika
-$custom-primaryhover: #ccc5b9; // Silver
-$custom-accent: #fffcf2; // Floral White
-$custom-background: #252422; // Carbon Black
-$custom-surface: #403d39; // Charcoal Brown
+
+// Orange Theme
+// $custom-primary: #eb5e28; // Spicy Paprika
+// $custom-primaryhover: #ccc5b9; // Silver
+// $custom-accent: #fffcf2; // Floral White
+// $custom-background: #252422; // Carbon Black
+// $custom-surface: #403d39; // Charcoal Brown
+
+// Gaming Theme
+$custom-primary: #339989;
+$custom-primaryhover: #7de2d1;
+$custom-accent: #fffafb;
+$custom-background: #131515;
+$custom-surface: #2b2c28;
 
 html,
 body {
@@ -301,6 +310,17 @@ footer a:hover {
 	background: transparent;
 	color: inherit;
 	text-align: left;
+}
+
+.sidebar-panel-toggle-label {
+	flex: 1 1 auto;
+	justify-content: flex-start;
+}
+
+.sidebar-panel-toggle-icon {
+	width: auto;
+	flex: 0 0 auto;
+	justify-content: center;
 }
 
 .sidebar-panel-toggle i {

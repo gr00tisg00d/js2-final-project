@@ -1,9 +1,9 @@
-import CartPanel from "./CartPanel.js";
+import CartSummarySection from "./CartSummarySection.js";
 
 export default {
 	name: "MobileCartModal",
 	components: {
-		CartPanel,
+		CartSummarySection,
 	},
 	props: {
 		cartItems: {
@@ -37,18 +37,15 @@ export default {
 							<button class="btn btn-sm btn-outline-primary" type="button" @click="$emit('clear-cart')">Clear</button>
 						</div>
 						<div id="cartModalBody" class="d-flex flex-column gap-2">
-							<cart-panel
-								:items="cartItems"
+							<cart-summary-section
+								:cart-items="cartItems"
+								:checkout-total="checkoutTotal"
+								:dismiss-modal-on-checkout="true"
 								@remove-item="$emit('remove-item', $event)"
 								@increment-item="$emit('increment-item', $event)"
 								@decrement-item="$emit('decrement-item', $event)"
-							></cart-panel>
+							></cart-summary-section>
 						</div>
-						<div class="cart-total-row mt-3 small">
-							<span class="text-body-secondary">Order total</span>
-							<span class="fw-semibold"><i class="bi bi-coin align-middle"></i> {{ checkoutTotal }}</span>
-						</div>
-						<button class="btn btn-primary w-100 mt-3" type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" data-bs-dismiss="modal" :disabled="cartItems.length === 0">Checkout</button>
 					</div>
 				</div>
 			</div>

@@ -48,6 +48,8 @@ export default {
 	},
 	template: `
 		<div class="store-catalog d-flex flex-column gap-3">
+
+			<!-- Icons Header -->
 			<div class="store-catalog-hero app-surface rounded p-3 p-lg-4">
 				<div class="store-catalog-header">
 					<div>
@@ -62,12 +64,18 @@ export default {
 				</div>
 			</div>
 
+			<!-- Empty List Placeholder -->
 			<div v-if="items.length === 0" class="store-empty-state app-surface rounded p-4">
 				<div class="store-empty-title">No matching icons</div>
 				<div class="store-empty-copy">Try widening the search or adjusting the price sliders to see more items.</div>
 			</div>
+
+
+			<!-- Display Icon Cards -->
 			<div v-else class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-lg-3">
+
 				<div class="col" v-for="item in items" :key="item.title">
+
 					<div
 						class="card app-surface h-100 store-item-card"
 						@mouseenter="updatePreviewPosition(item, $event)"
@@ -88,8 +96,12 @@ export default {
 							<button class="btn btn-sm btn-primary w-100 store-item-button" type="button" @click="$emit('add-item', item)">Add to cart</button>
 						</div>
 					</div>
+
 				</div>
 			</div>
+
+
+			<!-- Moves the icon preview modal to the body element. This is because of the navbar overlaying the preview. -->
 			<teleport to="body">
 				<div
 					v-if="hoveredItem"
