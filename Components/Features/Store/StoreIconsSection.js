@@ -3,8 +3,12 @@ export default {
 	data() {
 		return {
 			hoveredItem: null,
+			hoveredIndex: -1,
+			activeCardElement: null,
+			previewAnimationFrame: null,
 			previewStyle: {},
 			previewPlacement: "above",
+			viewportWidth: typeof window === "undefined" ? 1200 : window.innerWidth,
 		};
 	},
 	props: {
@@ -14,52 +18,205 @@ export default {
 		},
 	},
 	emits: ["add-item"],
+	computed: {
+		heroBackgroundStyle() {
+			return {
+				"--store-hero-image": "url('/Images/banners/banner01.jpg')",
+			};
+		},
+		itemRows() {
+			const cardsPerRow = this.getCardsPerRow();
+			const rows = [];
+
+			for (let index = 0; index < this.items.length; index += cardsPerRow) {
+				rows.push(
+					this.items.slice(index, index + cardsPerRow).map((item, offset) => ({
+						item,
+						index: index + offset,
+					})),
+				);
+			}
+
+			return rows;
+		},
+	},
+	mounted() {
+		window.addEventListener("resize", this.handleResize);
+		window.addEventListener("scroll", this.syncPreviewToActiveCard, true);
+		document.addEventListener("click", this.handleDocumentClick);
+		document.addEventListener("keydown", this.handleDocumentKeydown);
+	},
+	beforeUnmount() {
+		this.stopPreviewTracking();
+		window.removeEventListener("resize", this.handleResize);
+		window.removeEventListener("scroll", this.syncPreviewToActiveCard, true);
+		document.removeEventListener("click", this.handleDocumentClick);
+		document.removeEventListener("keydown", this.handleDocumentKeydown);
+	},
 	methods: {
-		updatePreviewPosition(item, event) {
-			const card = event.currentTarget;
-			const rect = card.getBoundingClientRect();
-			const previewWidth = Math.min(288, window.innerWidth - 32);
+		handleResize() {
+			this.viewportWidth = window.innerWidth;
+			this.syncPreviewToActiveCard();
+		},
+		stopPreviewTracking() {
+			if (this.previewAnimationFrame !== null) {
+				window.cancelAnimationFrame(this.previewAnimationFrame);
+				this.previewAnimationFrame = null;
+			}
+		},
+		startPreviewTracking() {
+			this.stopPreviewTracking();
+
+			const updatePosition = () => {
+				if (this.hoveredItem && this.activeCardElement) {
+					this.syncPreviewToActiveCard();
+					this.previewAnimationFrame =
+						window.requestAnimationFrame(updatePosition);
+				}
+			};
+
+			this.previewAnimationFrame = window.requestAnimationFrame(updatePosition);
+		},
+		syncPreviewToActiveCard() {
+			if (!this.activeCardElement || !this.hoveredItem) {
+				return;
+			}
+
+			const rect = this.activeCardElement.getBoundingClientRect();
+			const containerRect = this.activeCardElement
+				.closest(".store-content-panel")
+				?.getBoundingClientRect() ?? {
+				left: 16,
+				right: window.innerWidth - 16,
+				top: 16,
+				bottom: window.innerHeight - 16,
+			};
+			const horizontalPadding = 16;
+			const verticalPadding = 16;
+			const previewWidth = Math.min(
+				288,
+				Math.max(
+					220,
+					containerRect.right - containerRect.left - horizontalPadding * 2,
+				),
+			);
 			const previewHeight = 220;
 			const headerBottom =
 				document.querySelector("header")?.getBoundingClientRect().bottom ?? 0;
 			const gap = 18;
-			const pointerX = event.clientX ?? rect.left + rect.width / 2;
-			const pointerY = event.clientY ?? rect.top + rect.height / 2;
-			const left = Math.max(
-				16,
-				Math.min(pointerX + gap, window.innerWidth - previewWidth - 16),
+			const containerLeft = containerRect.left + horizontalPadding;
+			const containerRight = containerRect.right - horizontalPadding;
+			const containerTop = Math.max(
+				containerRect.top + verticalPadding,
+				headerBottom + 12,
 			);
-			const canPlaceAbove = pointerY - previewHeight - gap > headerBottom + 8;
-			const top = canPlaceAbove
-				? pointerY - gap
-				: Math.min(pointerY + gap, window.innerHeight - previewHeight - 16);
+			const containerBottom = containerRect.bottom - verticalPadding;
+			const preferredRight = rect.right + gap;
+			const fallbackLeft = rect.left - previewWidth - gap;
+			const canPlaceRight = preferredRight + previewWidth <= containerRight;
+			const canPlaceLeft = fallbackLeft >= containerLeft;
+			const left = canPlaceRight
+				? preferredRight
+				: canPlaceLeft
+					? fallbackLeft
+					: Math.max(
+							containerLeft,
+							Math.min(rect.left, containerRight - previewWidth),
+						);
+			const centeredTop = rect.top + (rect.height - previewHeight) / 2;
+			const top = Math.max(
+				containerTop,
+				Math.min(centeredTop, containerBottom - previewHeight),
+			);
 
-			this.hoveredItem = item;
-			this.previewPlacement = canPlaceAbove ? "above" : "below";
+			this.previewPlacement = canPlaceRight
+				? "right"
+				: canPlaceLeft
+					? "left"
+					: "overlay";
 			this.previewStyle = {
 				width: `${previewWidth}px`,
 				left: `${left}px`,
 				top: `${top}px`,
 			};
 		},
+		handleDocumentClick(event) {
+			if (!event.target.closest(".store-item-card")) {
+				this.hidePreview();
+			}
+		},
+		handleDocumentKeydown(event) {
+			if (event.key === "Escape") {
+				this.hidePreview();
+			}
+		},
+		getCardsPerRow() {
+			if (this.viewportWidth >= 1200) {
+				return 5;
+			}
+
+			if (this.viewportWidth >= 992) {
+				return 4;
+			}
+
+			if (this.viewportWidth >= 768) {
+				return 3;
+			}
+
+			return 2;
+		},
+		isHovered(index) {
+			return this.hoveredIndex === index;
+		},
+		isInHoveredRow(index) {
+			if (this.hoveredIndex < 0 || this.viewportWidth < 768) {
+				return false;
+			}
+
+			return (
+				Math.floor(index / this.getCardsPerRow()) ===
+				Math.floor(this.hoveredIndex / this.getCardsPerRow())
+			);
+		},
+		isCollapsed(index) {
+			return this.isInHoveredRow(index) && !this.isHovered(index);
+		},
+		togglePreview(item, index, event) {
+			if (this.hoveredIndex === index) {
+				this.hidePreview();
+				return;
+			}
+
+			const card = event.currentTarget;
+			this.hoveredItem = item;
+			this.hoveredIndex = index;
+			this.activeCardElement = card;
+			this.syncPreviewToActiveCard();
+			this.startPreviewTracking();
+		},
+		handleCardKeydown(item, index, event) {
+			if (event.key === "Enter" || event.key === " ") {
+				event.preventDefault();
+				this.togglePreview(item, index, event);
+			}
+		},
 		hidePreview() {
+			this.stopPreviewTracking();
 			this.hoveredItem = null;
+			this.hoveredIndex = -1;
+			this.activeCardElement = null;
 		},
 	},
 	template: `
-		<div class="store-catalog d-flex flex-column gap-3">
+		<div class="store-catalog d-flex flex-column gap-3" :class="{ 'has-active-item': hoveredItem }">
+			<div class="store-catalog-focus-overlay" :class="{ 'is-active': hoveredItem }" aria-hidden="true"></div>
 
 			<!-- Icons Header -->
-			<div class="store-catalog-hero app-surface rounded p-3 p-lg-4">
+			<div class="store-catalog-hero app-surface rounded p-2 p-lg-3" :style="heroBackgroundStyle">
 				<div class="store-catalog-header">
-					<div>
-						<div class="store-catalog-eyebrow">Storefront</div>
-						<h2 class="store-catalog-title mb-1">Icon Library</h2>
-						<p class="store-catalog-copy mb-0">Curated identity pieces for portfolios, dashboards, and profile customization.</p>
-					</div>
+					<h2 class="store-catalog-title mb-0">Icon Library</h2>
 					<div class="store-catalog-pill">
 						<span class="store-catalog-pill-value">{{ items.length }}</span>
-						<span class="store-catalog-pill-label">available</span>
 					</div>
 				</div>
 			</div>
@@ -72,28 +229,47 @@ export default {
 
 
 			<!-- Display Icon Cards -->
-			<div v-else class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-lg-3">
+			<div v-else class="store-item-grid">
 
-				<div class="col" v-for="item in items" :key="item.title">
+				<div
+					class="store-item-row"
+					v-for="(row, rowIndex) in itemRows"
+					:key="'row-' + rowIndex"
+				>
 
 					<div
-						class="card app-surface h-100 store-item-card"
-						@mouseenter="updatePreviewPosition(item, $event)"
-						@mousemove="updatePreviewPosition(item, $event)"
-						@mouseleave="hidePreview"
-						@focusin="updatePreviewPosition(item, $event)"
-						@focusout="hidePreview"
+						class="store-item-cell"
+						v-for="entry in row"
+						:key="entry.item.title"
+						:class="{
+							'is-hovered': isHovered(entry.index),
+							'is-in-hover-row': isInHoveredRow(entry.index),
+							'is-collapsed': isCollapsed(entry.index),
+						}"
 					>
-						<div class="store-item-media-wrap">
-							<img class="card-img-top store-item-image" :src="item.img" :alt="item.title">
-							<div class="store-item-price-badge"><i class="bi bi-coin align-middle"></i> {{ item.cost }}</div>
-						</div>
-						<div class="card-body store-item-body">
-							<div class="store-item-name text-truncate">{{ item.title }}</div>
-							<p class="store-item-summary">{{ item.shortDescription }}</p>
-						</div>
-						<div class="card-footer border-0 bg-transparent store-item-footer">
-							<button class="btn btn-sm btn-primary w-100 store-item-button" type="button" @click="$emit('add-item', item)">Add to cart</button>
+						<div
+							class="card app-surface h-100 store-item-card"
+							:class="{
+								'is-hovered': isHovered(entry.index),
+								'is-collapsed': isCollapsed(entry.index),
+							}"
+							role="button"
+							tabindex="0"
+							:aria-expanded="String(isHovered(entry.index))"
+							@click.stop="togglePreview(entry.item, entry.index, $event)"
+							@keydown="handleCardKeydown(entry.item, entry.index, $event)"
+						>
+							<div class="store-item-media-wrap">
+								<img class="card-img-top store-item-image" :src="entry.item.img" :alt="entry.item.title">
+								<div class="store-item-price-badge"><i class="bi bi-coin align-middle"></i> {{ entry.item.cost }}</div>
+							</div>
+							<div class="card-body store-item-body">
+								<div class="store-item-name text-truncate">{{ entry.item.title }}</div>
+								<p class="store-item-summary">{{ entry.item.shortDescription }}</p>
+							</div>
+							<!-- <div class="card-footer border-0 bg-transparent store-item-footer">
+								<button class="btn btn-sm btn-primary w-100 store-item-button" type="button" @click="$emit('add-item', entry.item)">Add to cart</button>
+							</div> -->
 						</div>
 					</div>
 

@@ -20,7 +20,7 @@ export default {
 	template: `
 		<nav class="py-2">
 			<div class="container d-flex justify-content-center">
-				<div class="navbar app-navbar px-3 py-2 rounded-4">
+				<div class="navbar app-navbar px-3 py-2 ">
 					<div class="app-navbar-inner">
 
 						<!-- Navbuttons -->
