@@ -18,10 +18,10 @@ export default {
 	template: `
 
         <!-- Container -->
-		<div class="p-3 rounded app-surface store-sidebar-panel" :class="isOpen ? 'is-expanded' : 'is-collapsed'">
+		<div class="rounded app-surface store-sidebar-panel" :class="isOpen ? 'is-expanded' : 'is-collapsed'">
 
             <!-- Header Content -->
-			<div class="panel-header mb-3" :class="{ 'panel-header-split': !!$slots.actions }">
+			<div class="panel-header p-3" :class="{ 'panel-header-split': !!$slots.actions }">
 
 				<!-- Cart Panel(actions) -->
 				<template v-if="$slots.actions">

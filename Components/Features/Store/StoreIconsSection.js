@@ -16,8 +16,16 @@ export default {
 			type: Array,
 			required: true,
 		},
+		filters: {
+			type: Object,
+			required: true,
+		},
+		priceCap: {
+			type: Number,
+			required: true,
+		},
 	},
-	emits: ["add-item"],
+	emits: ["add-item", "update-search", "update-min-price", "update-max-price"],
 	computed: {
 		heroBackgroundStyle() {
 			return {
@@ -221,12 +229,59 @@ export default {
 				</div>
 			</div>
 
+			<div class="store-inline-filters app-surface rounded p-3" :style="heroBackgroundStyle">
+				<div class="store-inline-filter-search">
+					<label class="visually-hidden" for="icon-search-input">Search icons</label>
+					<div class="store-inline-search-field">
+						<i class="bi bi-search" aria-hidden="true"></i>
+						<input
+							id="icon-search-input"
+							class="form-control form-control-sm"
+							type="text"
+							placeholder="Search icons"
+							aria-label="Search icons"
+							:value="filters.search"
+							@input="$emit('update-search', $event.target.value)"
+						/>
+					</div>
+				</div>
+				<div class="store-inline-filter-range">
+					<div class="filter-slider-labels">
+						<label class="filter-label">Minimum price</label>
+						<span class="filter-value">\${{ filters.minPrice }}</span>
+					</div>
+					<input
+						class="form-range"
+						type="range"
+						min="1"
+						:max="priceCap"
+						step="1"
+						:value="filters.minPrice"
+						@input="$emit('update-min-price', Number($event.target.value))"
+					/>
+				</div>
+				<div class="store-inline-filter-range">
+					<div class="filter-slider-labels">
+						<label class="filter-label">Maximum price</label>
+						<span class="filter-value">\${{ filters.maxPrice }}</span>
+					</div>
+					<input
+						class="form-range"
+						type="range"
+						min="1"
+						:max="priceCap"
+						step="1"
+						:value="filters.maxPrice"
+						@input="$emit('update-max-price', Number($event.target.value))"
+					/>
+				</div>
+			</div>
+
 			<!-- Empty List Placeholder -->
 			<div v-if="items.length === 0" class="store-empty-state app-surface rounded p-4">
 				<div class="store-empty-title">No matching icons</div>
 				<div class="store-empty-copy">Try widening the search or adjusting the price sliders to see more items.</div>
 			</div>
-
 
 			<!-- Display Icon Cards -->
 			<div v-else class="store-item-grid">

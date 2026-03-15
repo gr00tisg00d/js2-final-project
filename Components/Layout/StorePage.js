@@ -101,6 +101,9 @@ export default {
 		showFilters() {
 			return this.activeSection !== "home";
 		},
+		showSidebarFilters() {
+			return this.showFilters && this.activeSection !== "icons";
+		},
 	},
 	methods: {
 		openSidebarPanel(panel) {
@@ -248,7 +251,7 @@ export default {
 							:active-section="activeSection"
 							@select-section="setActiveSection"
 						></store-section-nav>
-						<div v-if="showFilters" class="sidebar-filter-slot">
+						<div v-if="showSidebarFilters" class="sidebar-filter-slot">
 							<filter-panel
 								:filters="filters"
 								:price-cap="priceCap"
@@ -257,6 +260,7 @@ export default {
 								@update-max-price="updateMaxPrice"
 							></filter-panel>
 						</div>
+						<div v-else-if="activeSection === 'icons'" class="small text-body-secondary sidebar-empty-state">Icon filters are displayed above the grid.</div>
 						<div v-else class="small text-body-secondary sidebar-empty-state">No filters on Home.</div>
 					</sidebar-panel-shell>
 
@@ -302,6 +306,11 @@ export default {
 						<store-icons-section
 							v-else-if="activeSection === 'icons'"
 							:items="filteredIcons"
+							:filters="filters"
+							:price-cap="priceCap"
+							@update-search="updateSearch"
+							@update-min-price="updateMinPrice"
+							@update-max-price="updateMaxPrice"
 							@add-item="addItemToCart"
 						></store-icons-section>
 
